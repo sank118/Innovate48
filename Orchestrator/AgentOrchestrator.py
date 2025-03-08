@@ -21,7 +21,7 @@ class AgentOrchestrator:
             model_name: str,
             kubernetes_context: Optional[str] = None,
             application_endpoint: str = "http://localhost:8080"
-    ):
+    ) -> None:
         self.log_monitor = LogMonitoringAgent(log_path)
         self.issue_detector = IssueDetectionAgent()
         self.solution_recommender = SolutionRecommendationAgent(api_key, api_url, model_name)
