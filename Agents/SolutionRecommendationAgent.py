@@ -10,9 +10,9 @@ class SolutionRecommendationAgent(BaseAgent):
 
     def __init__(self, api_key: str, api_url: str, model_name: str):
         super().__init__("SolutionRecommender")
-        self.api_key = api_key
-        self.api_url = api_url
-        self.model_name = model_name
+        self.api_key = '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'
+        self.api_url = 'https://api.groq.com/openai/v1/chat/completions'
+        self.model_name = 'llama3-70b-8192'
 
     def get_solution_recommendation(self, issue: Dict[str, Any]) -> str:
         """Query LLM to get solution recommendations for the given issue"""
