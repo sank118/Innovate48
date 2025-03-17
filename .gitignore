@@ -1,2 +1,5 @@
 var/log
+build/user_input.log
 venv
+.env
+monitoring_report.md

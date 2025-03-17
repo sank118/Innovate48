@@ -1,4 +1,9 @@
 import logging
+from dotenv import load_dotenv
+import os
+
+# Load variables from .env file
+load_dotenv('.env')
 
 # Configure logging
 from Orchestrator.AgentOrchestrator import AgentOrchestrator
@@ -7,7 +12,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("var/log/agent_system.log"),
+        logging.FileHandler("../var/log/agent_system.log"),
         logging.StreamHandler()
     ]
 )
@@ -15,10 +20,10 @@ logger = logging.getLogger("AgentSystem")
 
 if __name__ == "__main__":
     # Configuration
-    log_path = "build/deployment.log"  # Path to your deployment logs
-    api_key = "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"  # Your API key for the LLM service
-    api_url = "https://api.groq.com/openai/v1"  # LLM API endpoint
-    model_name = 'llama3-70b-8192'
+    log_path = "../build/deployment.log"  # Path to your deployment log
+    api_key = os.environ.get('API_KEY')  # Your API key for the LLM service
+    api_url = os.environ.get('API_URL')   # LLM API endpoint
+    model_name = os.environ.get('MODEL_NAME')
 
     # Create and run orchestrator
     orchestrator = AgentOrchestrator(

@@ -26,7 +26,7 @@ class LogMonitoringAgent(BaseAgent):
         return new_logs
 
     def filter_build_deployment_logs(self, logs: List[str]) -> List[str]:
-        """Filter logs to only include build and deployment related entries"""
+        """Filter log to only include build and deployment related entries"""
         build_deploy_keywords = [
             "build", "deploy", "container", "pod", "kubernetes", "k8s",
             "docker", "image", "ci/cd", "pipeline", "helm", "chart"

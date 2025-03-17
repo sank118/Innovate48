@@ -1,5 +1,6 @@
 import time
 import logging
+import os
 from typing import Dict, Any, Optional
 
 from Agents.FixImplementationAgent import FixImplementationAgent
@@ -35,20 +36,20 @@ class AgentOrchestrator:
 
     def run_monitoring_cycle(self):
         """Run a full monitoring cycle"""
-        # Step 1: Read and filter logs
+        # Step 1: Read and filter log
         self.logger.info("Starting monitoring cycle")
         raw_logs = self.log_monitor.read_new_logs()
         build_deploy_logs = self.log_monitor.filter_build_deployment_logs(raw_logs)
 
         if not build_deploy_logs:
-            self.logger.info("No new build/deployment logs found")
+            self.logger.info("No new build/deployment log found")
             return
 
         # Step 2: Detect issues
         new_issues = self.issue_detector.detect_issues(build_deploy_logs)
 
         if not new_issues:
-            self.logger.info("No issues detected in logs")
+            self.logger.info("No issues detected in log")
             return
 
         # Step 3: Process each issue
@@ -95,14 +96,13 @@ class AgentOrchestrator:
         print(solution)
         print("-" * 80)
 
-        while True:
-            response = input("Apply this solution? (yes/no): ").strip().lower()
-            if response in ['yes', 'y']:
-                return True
-            elif response in ['no', 'n']:
-                return False
-            else:
-                print("Please answer 'yes' or 'no'")
+        auto_confirm = os.environ.get('MCP_AUTO_CONFIRM')
+        if auto_confirm == 'yes':
+            return True
+        elif input("Continue? (yes/no): ").lower() == 'yes':
+            return True
+        else:
+            return False
 
     def _verify_and_update_issue(self, issue: Dict[str, Any]):
         """Verify system state after fix and update issue"""

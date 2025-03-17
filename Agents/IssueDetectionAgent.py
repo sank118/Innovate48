@@ -6,11 +6,11 @@ from Agents.BaseAgent import BaseAgent
 
 
 class IssueDetectionAgent(BaseAgent):
-    """Agent responsible for detecting issues in logs"""
+    """Agent responsible for detecting issues in log"""
 
     def __init__(self):
         super().__init__("IssueDetector")
-        # Common error patterns in logs
+        # Common error patterns in log
         self.error_patterns = [
             r"error",
             r"exception",
@@ -31,7 +31,7 @@ class IssueDetectionAgent(BaseAgent):
         ]
 
     def detect_issues(self, logs: List[str]) -> List[Dict[str, Any]]:
-        """Detect issues in the provided logs"""
+        """Detect issues in the provided log"""
         issues = []
 
         for i, log in enumerate(logs):
