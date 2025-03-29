@@ -3,3 +3,5 @@ dotenv
 fastapi
 uvicorn
 argparse
+transformers
+groq

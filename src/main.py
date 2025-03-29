@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 # Load variables from .env file
-load_dotenv('.env')
+load_dotenv()
 
 # Configure logging
 from Orchestrator.AgentOrchestrator import AgentOrchestrator
@@ -21,9 +21,9 @@ logger = logging.getLogger("AgentSystem")
 if __name__ == "__main__":
     # Configuration
     log_path = "../build/deployment.log"  # Path to your deployment log
-    api_key = os.environ.get('API_KEY')  # Your API key for the LLM service
-    api_url = os.environ.get('API_URL')   # LLM API endpoint
-    model_name = os.environ.get('MODEL_NAME')
+    api_key = os.environ.get("API_KEY")  # Your API key for the LLM service
+    api_url = os.environ.get("API_URL")   # LLM API endpoint
+    model_name = os.environ.get("MODEL_NAME")
 
     # Create and run orchestrator
     orchestrator = AgentOrchestrator(
